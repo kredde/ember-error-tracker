@@ -1,7 +1,7 @@
 {
-  "name": "ember-log-errors",
+  "name": "ember-error-tracker",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "",
   "keywords": [
     "ember-addon"
   ],

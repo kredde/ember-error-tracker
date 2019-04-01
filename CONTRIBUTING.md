@@ -3,7 +3,7 @@
 ## Installation
 
 * `git clone <repository-url>`
-* `cd ember-log-errors`
+* `cd ember-error-tracker`
 * `npm install`
 
 ## Linting
