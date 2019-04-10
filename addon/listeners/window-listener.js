@@ -14,9 +14,9 @@ export default class WindowListener {
         source: 'window',
         timestamp: Date.now(),
         error
-      }
+      };
 
-      consumer.consumeError(errorLog)
+      consumer.consumeError(errorLog);
     }
   }
 }

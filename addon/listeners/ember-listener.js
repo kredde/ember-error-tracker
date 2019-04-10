@@ -8,8 +8,8 @@ export default class EmberListener {
         source: 'ember',
         timestamp: Date.now(),
         error
-      }
-      consumer.consumeError(errorLog)
+      };
+      consumer.consumeError(errorLog);
     };
 
     // consume ember errors
@@ -19,8 +19,8 @@ export default class EmberListener {
         source: 'ember',
         timestamp: Date.now(),
         error
-      }
-      consumer.consumeError(errorLog)
+      };
+      consumer.consumeError(errorLog);
     }
   }
 }

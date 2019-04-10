@@ -1,18 +1,22 @@
 import { assert } from '@ember/debug';
+import { fetch } from 'fetch'
 import EventStack from 'ember-error-tracker/utils/EventStack'
+import replaceErrors from 'ember-error-tracker/utils/stringify-error'
 
 export default class Consumer {
 
   constructor(maxLogStackSize, consumerOptions) {
     if (consumerOptions.api) {
-      assert('Must pass an endpoint if api consumer is enabled', typeof consumerOptions.api.endPoint === 'string')
+      assert(
+        'Must pass an endpoint if api consumer is enabled',
+        consumerOptions.api.endPoint && typeof consumerOptions.api.endPoint === 'string'
+      );
     }
+    this.options = consumerOptions;
+    this.eventStack = new EventStack(maxLogStackSize);
 
-    this.options = consumerOptions
-    this.eventStack = new EventStack(maxLogStackSize)
-
-    this.consumeError = this.consumeError.bind(this)
-    this.consumeEvent = this.consumeEvent.bind(this)
+    this.consumeError = this.consumeError.bind(this);
+    this.consumeEvent = this.consumeEvent.bind(this);
   }
 
   // when an error is catched it is logged with the last events that led to it
@@ -20,14 +24,20 @@ export default class Consumer {
     const payload = {
       error,
       events: this.eventStack.array
-    }
+    };
 
     if (this.options.console) {
       // eslint-disable-next-line no-console
-      console.error(error.error.stack, payload)
+      console.error(error.error.stack, payload);
     }
     if (this.options.api) {
-      // TODO
+      const key = this.options.api.key ? `?key=${this.options.api.key}` : '';
+      const url = `${this.options.api.endPoint}${key}`;
+      const body = JSON.stringify(payload, replaceErrors);
+      const options = { headers: { Accept: 'application/json', 'Content-type': 'application/json' }, method: 'post', body };
+
+      // catch error to prevent infinite error loop in case there is an issue with the api
+      fetch(url, options).catch();
     }
   }
 
@@ -38,7 +48,7 @@ export default class Consumer {
       location: window.location.pathname,
       nativeEvent: event,
       timestamp: Date.now()
-    }
-    this.eventStack.push(eventObject)
+    };
+    this.eventStack.push(eventObject);
   }
 }

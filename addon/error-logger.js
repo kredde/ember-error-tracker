@@ -11,15 +11,11 @@ const defaultOptions = {
   listeners: {
     ember: true,
     window: true,
-    //
   },
   events: ['click', 'input', 'scroll'],
   consumers: {
     console: true,
-    api: { // false if not enabled
-      endPoint: 'asdf',
-      key: '',
-    }
+    api: false,
   }
 }
 /**
@@ -32,28 +28,28 @@ export default class ErrorLogger extends EmberObject {
   constructor(customOptions = {}) {
     super(...arguments)
 
-    const options = Object.assign(defaultOptions, customOptions)
-    this.options = options
+    const options = Object.assign(defaultOptions, customOptions);
+    this.options = options;
   }
 
   listen() {
-    const consumer = new Consumer(this.options.maxLogStackSize, this.options.consumers)
+    const consumer = new Consumer(this.options.maxLogStackSize, this.options.consumers);
 
     if (this.options.listeners.ember) {
-      const emberListener = new EmberListener()
-      emberListener.listen(consumer)
+      const emberListener = new EmberListener();
+      emberListener.listen(consumer);
     }
 
     if (window && this.options.listeners.window) {
-      const windowListener = new WindowListener()
-      windowListener.listen(consumer)
+      const windowListener = new WindowListener();
+      windowListener.listen(consumer);
     }
 
     if (this.options.events) {
-      const eventListener = new EventListener()
+      const eventListener = new EventListener();
       this.options.events.forEach(event => {
-        eventListener.listen(event, consumer)
-      })
+        eventListener.listen(event, consumer);
+      });
     }
   }
 }

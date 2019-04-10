@@ -8,7 +8,7 @@ export default class ErrorStack {
   }
 
   get array() {
-    return this.container.reverse()
+    return this.container.reverse();
   }
 
   isEmpty() {
@@ -21,7 +21,7 @@ export default class ErrorStack {
 
   push(element) {
     if (this.isFull()) {
-      this.container.shift()
+      this.container.shift();
     }
     this.container.push(element)
   }
@@ -30,7 +30,7 @@ export default class ErrorStack {
     if (this.isEmpty()) {
       return
     }
-    this.container.pop()
+    this.container.pop();
   }
 
   clear() {
