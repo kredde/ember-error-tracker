@@ -2,15 +2,9 @@
 
 ## Installation
 
-* `git clone <repository-url>`
+* `git clone https://github.com/kredde/ember-error-tracker`
 * `cd ember-error-tracker`
 * `npm install`
-
-## Linting
-
-* `npm run lint:hbs`
-* `npm run lint:js`
-* `npm run lint:js -- --fix`
 
 ## Running tests
 

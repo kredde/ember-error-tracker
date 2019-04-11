@@ -9,7 +9,11 @@ import Consumer from './consumers/consumer'
 const defaultOptions = {
   maxLogStackSize: 10,
   listeners: {
-    ember: true,
+    ember: {
+      rsvp: true,
+      ember: true,
+      actions: true,
+    },
     window: true,
   },
   events: ['click', 'input', 'scroll'],
@@ -34,11 +38,8 @@ export default class ErrorLogger extends EmberObject {
 
   listen() {
     const consumer = new Consumer(this.options.maxLogStackSize, this.options.consumers);
-
-    if (this.options.listeners.ember) {
-      const emberListener = new EmberListener();
-      emberListener.listen(consumer);
-    }
+    const emberListener = new EmberListener();
+    emberListener.listen(consumer, this.options.listeners.ember);
 
     if (window && this.options.listeners.window) {
       const windowListener = new WindowListener();
