@@ -1,7 +1,7 @@
 {
   "name": "ember-error-tracker",
   "version": "1.0.1",
-  "description": "",
+  "description": "Error handling and logging addon for Ember.js.",
   "keywords": [
     "error",
     "logging",
@@ -10,9 +10,12 @@
     "exception",
     "ember-addon"
   ],
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kredde/ember-error-tracker.git"
+  },
   "license": "MIT",
-  "author": "",
+  "author": "Kristian Schwienbacher",
   "directories": {
     "doc": "doc",
     "test": "tests"

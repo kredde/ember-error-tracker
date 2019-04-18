@@ -1,6 +1,11 @@
 # Ember Error Tracker
 [![NPM](https://nodei.co/npm/ember-error-tracker.png?compact=true)](https://nodei.co/npm/ember-error-tracker/)
-[![Build Status](https://travis-ci.org/kredde/ember-error-tracker.svg?branch=master)](https://travis-ci.org/kredde/ember-error-tracker)
+
+
+[![Build Status](https://flat.badgen.net/travis/kredde/ember-error-tracker)](https://travis-ci.org/kredde/ember-error-tracker)
+![mantainability-badge](https://flat.badgen.net/codeclimate/maintainability/kredde/ember-error-tracker)
+![license-badge](https://flat.badgen.net/npm/license/ember-error-tracker)
+
 
 ember-error-tracker enables the handling and logging of uncaught errors. The error is logged along with a specified number of events that led to it and can be consumed either by the console or a custom api endpoint.
 
