@@ -1,5 +1,5 @@
 import { assert } from '@ember/debug';
-import { fetch } from 'fetch'
+import fetch from 'fetch'
 import EventStack from 'ember-error-tracker/utils/EventStack'
 import replaceErrors from 'ember-error-tracker/utils/stringify-error'
 
