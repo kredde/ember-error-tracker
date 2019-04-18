@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "keywords": [
+    "error",
+    "logging",
+    "ember",
+    "log",
+    "exception",
     "ember-addon"
   ],
   "repository": "",

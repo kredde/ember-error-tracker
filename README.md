@@ -1,4 +1,4 @@
-ember-log-errors
+ember-error-tracker
 ==============================================================================
 
 ember-error-tracker enables the handling and logging of uncaught errors. The error is logged along with a specified number of events that led to it and can be consumed either by the console or a custom api endpoint.
