@@ -5,4 +5,5 @@ export function initialize(application) {
   const logger = new ErrorLogger(ENV['ember-error-tracker']);
   logger.listen();
 }
+
 export default { initialize };

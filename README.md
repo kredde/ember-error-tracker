@@ -1,8 +1,7 @@
 ember-log-errors
 ==============================================================================
 
-[Short description of the addon.]
-
+ember-error-tracker enables the handling and logging of uncaught errors. The error is logged along with a specified number of events that led to it and can be consumed either by the console or a custom api endpoint.
 
 Compatibility
 ------------------------------------------------------------------------------
@@ -67,6 +66,13 @@ module.exports = function (defaults) {
 }
 
 ```
+
+Source maps to find original error position
+------------------------------------------------------------------------------
+To get the original position of the error in the source code you can use
+[mozilla/source-maps](https://github.com/mozilla/source-map). The location
+of the source map in a production build can be found at the end of the minified
+js file.
 
 Contributing
 ------------------------------------------------------------------------------

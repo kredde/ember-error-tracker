@@ -1,12 +1,19 @@
 import EmberObject from '@ember/object';
 
+/**
+ * Listens to error events triggered by ember
+ *
+ * @class EmberListeners
+ */
 export default class EmberListener extends EmberObject {
-  constructor() {
-    super(...arguments);
-  }
-
+  /**
+   * initializes ember error listeners
+   *
+   * @method listen
+   * @param consumer
+   * @param options
+   */
   listen(consumer, options) {
-
     // consume RSVP errors
     if (options.rsvp) {
       // eslint-disable-next-line

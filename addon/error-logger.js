@@ -6,7 +6,7 @@ import EventListener from './listeners/event-listener'
 import Consumer from './consumers/consumer'
 
 
-const defaultOptions = {
+const DEFAULT_OPTIONS = {
   maxLogStackSize: 10,
   listeners: {
     ember: {
@@ -22,6 +22,7 @@ const defaultOptions = {
     api: false,
   }
 }
+
 /**
  * Initializes error tracker
  *
@@ -32,10 +33,15 @@ export default class ErrorLogger extends EmberObject {
   constructor(customOptions = {}) {
     super(...arguments)
 
-    const options = Object.assign(defaultOptions, customOptions);
+    const options = Object.assign(DEFAULT_OPTIONS, customOptions);
     this.options = options;
   }
 
+  /**
+   * creates a consumer and the event and error listeners
+   *
+   * @method listen
+   */
   listen() {
     const consumer = new Consumer(this.options.maxLogStackSize, this.options.consumers);
     const emberListener = new EmberListener();

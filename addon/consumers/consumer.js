@@ -3,8 +3,18 @@ import { fetch } from 'fetch'
 import EventStack from 'ember-error-tracker/utils/EventStack'
 import replaceErrors from 'ember-error-tracker/utils/stringify-error'
 
+/**
+ *
+ * @class Consumer
+ */
 export default class Consumer {
 
+  /**
+   * initialize consumer objet
+   *
+   * @param {Number} maxLogStackSize
+   * @param {Object} consumerOptions
+   */
   constructor(maxLogStackSize, consumerOptions) {
     if (consumerOptions.api) {
       assert(
@@ -18,8 +28,12 @@ export default class Consumer {
     this.consumeError = this.consumeError.bind(this);
     this.consumeEvent = this.consumeEvent.bind(this);
   }
-
-  // when an error is catched it is logged with the last events that led to it
+  /**
+   * log error to console and/or api endpoint along with the events that led to it
+   *
+   * @method consumeError
+   * @param {Error} error
+   */
   consumeError(error) {
     const payload = {
       error,
@@ -40,8 +54,11 @@ export default class Consumer {
       fetch(url, options).catch();
     }
   }
-
-  // events are stored in a stack
+  /**
+   * pushes events into stack
+   *
+   * @method consumeEvent
+   */
   consumeEvent() {
     const eventObject = {
       type: event.type,

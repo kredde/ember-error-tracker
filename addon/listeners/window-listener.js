@@ -1,5 +1,16 @@
+/**
+ * window listener
+ *
+ * @class WindowListener
+ */
 export default class WindowListener {
 
+  /**
+   * adds the window on error listener
+   *
+   * @method listen
+   * @param {Consumer} consumer
+   */
   listen(consumer) {
     window.onerror = (message, file, line, column, error) => {
       if (!error) {
