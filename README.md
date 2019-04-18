@@ -3,7 +3,7 @@
 
 
 [![Build Status](https://flat.badgen.net/travis/kredde/ember-error-tracker)](https://travis-ci.org/kredde/ember-error-tracker)
-![mantainability-badge](https://flat.badgen.net/codeclimate/maintainability/kredde/ember-error-tracker)
+[![Maintainability](https://api.codeclimate.com/v1/badges/7de05d9a978afadff3e8/maintainability)](https://codeclimate.com/github/kredde/ember-error-tracker/maintainability)
 ![license-badge](https://flat.badgen.net/npm/license/ember-error-tracker)
 
 
