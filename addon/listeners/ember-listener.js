@@ -21,7 +21,10 @@ export default class EmberListener extends EmberObject {
         const errorLog = {
           source: 'ember-rsvp',
           timestamp: Date.now(),
-          error
+          error: {
+            message: error.message,
+            stack: error.stack
+          }
         };
         consumer.consumeError(errorLog);
       };
@@ -35,7 +38,10 @@ export default class EmberListener extends EmberObject {
         const errorLog = {
           source: 'ember',
           timestamp: Date.now(),
-          error
+          error: {
+            message: error.message,
+            stack: error.stack
+          }
         };
         consumer.consumeError(errorLog);
       }
@@ -52,7 +58,10 @@ export default class EmberListener extends EmberObject {
             const errorLog = {
               source: `ember-action:${actionName}`,
               timestamp: Date.now(),
-              error
+              error: {
+                message: error.message,
+                stack: error.stack
+              }
             };
             consumer.consumeError(errorLog);
           }

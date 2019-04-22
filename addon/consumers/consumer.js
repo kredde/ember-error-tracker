@@ -37,12 +37,13 @@ export default class Consumer {
   consumeError(error) {
     const payload = {
       error,
+      userAgent: navigator.userAgent,
       events: this.eventStack.array
     };
 
     if (this.options.console) {
       // eslint-disable-next-line no-console
-      console.error(error.error.stack, payload);
+      console.error(error.error.stack, payload.error);
     }
     if (this.options.api) {
       const key = this.options.api.key ? `?key=${this.options.api.key}` : '';
@@ -59,13 +60,25 @@ export default class Consumer {
    *
    * @method consumeEvent
    */
-  consumeEvent() {
+  consumeEvent(event) {
+    let target = {}
+    if (event.target) {
+      const tagName = event.target.tagName.toLowerCase();
+      const classList = Array.from(event.target.classList);
+      const classString = classList.reduce((string, className) => `${string}.${className}`, '');
+      const id = event.target.id;
+      // create selector of type `tagname#id.class1.class2`
+      target['selector'] = `${tagName}${id ? `#${id}` : ''}${classString}`;
+      target['text'] = event.target.innerText
+    }
+
     const eventObject = {
       type: event.type,
       location: window.location.pathname,
-      nativeEvent: event,
+      target,
       timestamp: Date.now()
     };
+
     this.eventStack.push(eventObject);
   }
 }
