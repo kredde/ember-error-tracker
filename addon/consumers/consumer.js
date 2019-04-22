@@ -52,7 +52,7 @@ export default class Consumer {
       const options = { headers: { Accept: 'application/json', 'Content-type': 'application/json' }, method: 'post', body };
 
       // catch error to prevent infinite error loop in case there is an issue with the api
-      fetch(url, options).catch();
+      fetch(url, options).catch(() => { });
     }
   }
   /**

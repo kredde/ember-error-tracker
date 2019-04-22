@@ -72,6 +72,33 @@ module.exports = function (defaults) {
 }
 
 ```
+API endpoint payload
+------------------------------------------------------------------------------
+The payload that is sent to your custom API endpoint will look like this (depending on your configuration).
+
+```javascript
+const payload = 
+{
+  error: {
+    source: 'String', // error source e.g.: 'ember', 'window' etc.
+    timestamp: 'Number',
+    error: {
+      message: 'String',
+      stack: 'String' // stracktrace that can be parsed (https://www.npmjs.com/package/stacktrace-parser)
+    }
+  },
+  events: [{
+    type: 'String',
+    timestamp: 'Number',
+    location: 'String', // the path on which the error occured e.g.: '/'
+    target: {
+      selector: 'String',
+     text: 'String' // the text inside the selector
+    }
+  }],
+  userAgent: 'String' // can be parsed (https://www.npmjs.com/package/bowser)
+}
+```
 
 Source maps to find original error position
 ------------------------------------------------------------------------------
