@@ -36,23 +36,23 @@ export default class Consumer {
    */
   consumeError(error) {
     const screen = {};
-    let location;
-
-    if (window) {
+    if (window && window.screen) {
       screen['resolution'] = {
         width: window.screen.width,
         height: window.screen.height
       };
+    }
+    if (window && window.innerHeight && window.innerWidth) {
       screen['viewPort'] = {
         width: window.innerWidth,
         height: window.innerHeight
       };
-      location = window.location.pathname
     }
+    const location = window && window.location ? window.location.pathname : undefined
 
     const payload = {
       error,
-      userAgent: navigator ? navigator.userAgent : undefined,
+      userAgent: window && window.navigator ? navigator.userAgent : undefined,
       screen,
       location,
       events: this.eventStack.array
