@@ -12,22 +12,24 @@ export default class WindowListener {
    * @param {Consumer} consumer
    */
   listen(consumer) {
-    window.onerror = (message, file, line, column, error) => {
-      if (!error) {
-        error = {
-          message: message,
-          name: error,
-          stack: message + ' at ' + "\n" + file + ':' + line + ':' + column
+    if (window) {
+      window.onerror = (message, file, line, column, error) => {
+        if (!error) {
+          error = {
+            message: message,
+            name: error,
+            stack: message + ' at ' + "\n" + file + ':' + line + ':' + column
+          };
+        }
+
+        const errorLog = {
+          source: 'window',
+          timestamp: Date.now(),
+          error
         };
+
+        consumer.consumeError(errorLog);
       }
-
-      const errorLog = {
-        source: 'window',
-        timestamp: Date.now(),
-        error
-      };
-
-      consumer.consumeError(errorLog);
     }
   }
 }

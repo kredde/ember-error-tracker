@@ -35,9 +35,26 @@ export default class Consumer {
    * @param {Error} error
    */
   consumeError(error) {
+    const screen = {};
+    let location;
+
+    if (window) {
+      screen['resolution'] = {
+        width: window.screen.width,
+        height: window.screen.height
+      };
+      screen['viewPort'] = {
+        width: window.innerWidth,
+        height: window.innerHeight
+      };
+      location = window.location.pathname
+    }
+
     const payload = {
       error,
-      userAgent: navigator.userAgent,
+      userAgent: navigator ? navigator.userAgent : undefined,
+      screen,
+      location,
       events: this.eventStack.array
     };
 
@@ -45,7 +62,7 @@ export default class Consumer {
       // eslint-disable-next-line no-console
       console.error(error.error.stack, payload.error);
     }
-    if (this.options.api) {
+    if (this.options.api && this.options.api.endPoint) {
       const key = this.options.api.key ? `?key=${this.options.api.key}` : '';
       const url = `${this.options.api.endPoint}${key}`;
       const body = JSON.stringify(payload, replaceErrors);
@@ -74,7 +91,7 @@ export default class Consumer {
 
     const eventObject = {
       type: event.type,
-      location: window.location.pathname,
+      location: window ? window.location.pathname : undefined,
       target,
       timestamp: Date.now()
     };
