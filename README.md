@@ -68,6 +68,10 @@ module.exports = function (defaults) {
     babel: {
       sourceMaps: 'inline'
     },
+    sourcemaps: {
+      enabled: true,
+      extensions: ['js']
+    }
   });
 }
 
@@ -80,23 +84,33 @@ The payload that is sent to your custom API endpoint will look like this (depend
 const payload = 
 {
   error: {
-    source: 'String', // error source e.g.: 'ember', 'window' etc.
-    timestamp: 'Number',
+    source: String, // error source e.g.: 'ember', 'window' etc.
+    timestamp: Number,
     error: {
-      message: 'String',
-      stack: 'String' // stracktrace that can be parsed (https://www.npmjs.com/package/stacktrace-parser)
+      message: String,
+      stack: String // stracktrace that can be parsed (https://www.npmjs.com/package/stacktrace-parser)
     }
   },
   events: [{
-    type: 'String',
-    timestamp: 'Number',
-    location: 'String', // the path on which the error occured e.g.: '/'
+    type: String,
+    timestamp: Number,
+    location: String, // the path on which the error occured e.g.: '/'
     target: {
-      selector: 'String',
-     text: 'String' // the text inside the selector
+      selector: String,
+      text: String // the text inside the selector
     }
   }],
-  userAgent: 'String' // can be parsed (https://www.npmjs.com/package/bowser)
+  userAgent: String, // can be parsed (https://www.npmjs.com/package/bowser)
+  screen: {
+    resolution: {
+      width: Number,
+      height: Number
+    },
+    viewPort: {
+      width: Number,
+      height: Number.
+    }
+  }
 }
 ```
 
