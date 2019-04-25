@@ -80,13 +80,15 @@ export default class Consumer {
   consumeEvent(event) {
     let target = {}
     if (event.target) {
-      const tagName = event.target.tagName.toLowerCase();
-      const classList = Array.from(event.target.classList);
-      const classString = classList.reduce((string, className) => `${string}.${className}`, '');
-      const id = event.target.id;
-      // create selector of type `tagname#id.class1.class2`
-      target['selector'] = `${tagName}${id ? `#${id}` : ''}${classString}`;
-      target['text'] = event.target.innerText
+      const tagName = event.target.tagName ? event.target.tagName.toLowerCase() : undefined;
+      if (tagName) {
+        const classList = Array.from(event.target.classList);
+        const classString = classList.reduce((string, className) => `${string}.${className}`, '');
+        const id = event.target.id;
+        // create selector of type `tagname#id.class1.class2`
+        target['selector'] = `${tagName}${id ? `#${id}` : ''}${classString}`;
+        target['text'] = event.target.innerText
+      }
     }
 
     const eventObject = {
