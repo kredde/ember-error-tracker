@@ -30,11 +30,12 @@ const DEFAULT_OPTIONS = {
  */
 export default class ErrorLogger extends EmberObject {
 
-  constructor(customOptions = {}) {
+  constructor(customOptions = {}, environment) {
     super(...arguments)
 
     const options = Object.assign(DEFAULT_OPTIONS, customOptions);
     this.options = options;
+    this.environment = environment
   }
 
   /**
@@ -45,7 +46,7 @@ export default class ErrorLogger extends EmberObject {
   listen() {
     const consumer = new Consumer(this.options.maxLogStackSize, this.options.consumers);
     const emberListener = new EmberListener();
-    emberListener.listen(consumer, this.options.listeners.ember);
+    emberListener.listen(consumer, this.options.listeners.ember, this.environment);
 
     if (window && this.options.listeners.window) {
       const windowListener = new WindowListener();

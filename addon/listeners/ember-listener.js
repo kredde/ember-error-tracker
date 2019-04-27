@@ -13,7 +13,7 @@ export default class EmberListener extends EmberObject {
    * @param consumer
    * @param options
    */
-  listen(consumer, options) {
+  listen(consumer, options, env) {
     // consume RSVP errors
     if (options.rsvp) {
       // eslint-disable-next-line
@@ -27,6 +27,11 @@ export default class EmberListener extends EmberObject {
           }
         };
         consumer.consumeError(errorLog);
+
+        // throw error while testing to not break test cases
+        if (env === 'test') {
+          throw error;
+        }
       };
     }
 
@@ -44,6 +49,11 @@ export default class EmberListener extends EmberObject {
           }
         };
         consumer.consumeError(errorLog);
+
+        // throw error while testing to not break test cases
+        if (env === 'test') {
+          throw error;
+        }
       }
     }
 
@@ -64,6 +74,11 @@ export default class EmberListener extends EmberObject {
               }
             };
             consumer.consumeError(errorLog);
+
+            // throw error while testing to not break test cases
+            if (env === 'test') {
+              throw error;
+            }
           }
         }
       });
