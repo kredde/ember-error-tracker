@@ -20,7 +20,7 @@ Installation
 ------------------------------------------------------------------------------
 
 ```
-ember install ember-log-errors
+ember install ember-error-tracker
 ```
 
 
