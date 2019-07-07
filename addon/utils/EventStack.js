@@ -23,12 +23,12 @@ export default class ErrorStack {
     if (this.isFull()) {
       this.container.shift();
     }
-    this.container.push(element)
+    this.container.push(element);
   }
 
   pop() {
     if (this.isEmpty()) {
-      return
+      return;
     }
     this.container.pop();
   }

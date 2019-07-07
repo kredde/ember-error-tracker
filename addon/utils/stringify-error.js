@@ -7,4 +7,4 @@ export default (key, value) => {
     return error;
   }
   return value;
-}
+};
