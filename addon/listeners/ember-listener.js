@@ -17,7 +17,7 @@ export default class EmberListener extends EmberObject {
     // consume RSVP errors
     if (options.rsvp) {
       // eslint-disable-next-line
-      Ember.RSVP.onerror = function (error) {
+      Ember.RSVP.onerror = function(error) {
         const errorLog = {
           source: 'ember-rsvp',
           timestamp: Date.now(),
@@ -34,7 +34,6 @@ export default class EmberListener extends EmberObject {
         }
       };
     }
-
 
     // consume ember errors
     if (options.ember) {
@@ -54,14 +53,14 @@ export default class EmberListener extends EmberObject {
         if (env === 'test') {
           throw error;
         }
-      }
+      };
     }
 
     // consume action errors
     if (options.actions) {
       // eslint-disable-next-line
       Ember.ActionHandler.reopen({
-        send: function (actionName) {
+        send: function(actionName) {
           try {
             this._super.apply(this, arguments);
           } catch (error) {

@@ -4,7 +4,6 @@
  * @class WindowListener
  */
 export default class WindowListener {
-
   /**
    * adds the window on error listener
    *
@@ -18,7 +17,7 @@ export default class WindowListener {
           error = {
             message: message,
             name: error,
-            stack: message + ' at ' + "\n" + file + ':' + line + ':' + column
+            stack: message + ' at ' + '\n' + file + ':' + line + ':' + column
           };
         }
 
@@ -29,7 +28,7 @@ export default class WindowListener {
         };
 
         consumer.consumeError(errorLog);
-      }
+      };
     }
   }
 }

@@ -1,4 +1,4 @@
-import ErrorLogger from 'ember-error-tracker/error-logger'
+import ErrorLogger from 'ember-error-tracker/error-logger';
 
 export function initialize(application) {
   const ENV = application.resolveRegistration('config:environment');

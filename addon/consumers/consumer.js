@@ -1,14 +1,13 @@
 import { assert } from '@ember/debug';
-import fetch from 'fetch'
-import EventStack from 'ember-error-tracker/utils/EventStack'
-import replaceErrors from 'ember-error-tracker/utils/stringify-error'
+import fetch from 'fetch';
+import EventStack from 'ember-error-tracker/utils/EventStack';
+import replaceErrors from 'ember-error-tracker/utils/stringify-error';
 
 /**
  *
  * @class Consumer
  */
 export default class Consumer {
-
   /**
    * initialize consumer objet
    *
@@ -48,7 +47,7 @@ export default class Consumer {
         height: window.innerHeight
       };
     }
-    const location = window && window.location ? window.location.pathname : undefined
+    const location = window && window.location ? window.location.pathname : undefined;
 
     const payload = {
       error,
@@ -66,10 +65,14 @@ export default class Consumer {
       const key = this.options.api.key ? `?key=${this.options.api.key}` : '';
       const url = `${this.options.api.endPoint}${key}`;
       const body = JSON.stringify(payload, replaceErrors);
-      const options = { headers: { Accept: 'application/json', 'Content-type': 'application/json' }, method: 'post', body };
+      const options = {
+        headers: { Accept: 'application/json', 'Content-type': 'application/json' },
+        method: 'post',
+        body
+      };
 
       // catch error to prevent infinite error loop in case there is an issue with the api
-      fetch(url, options).catch(() => { });
+      fetch(url, options).catch(() => {});
     }
   }
   /**
@@ -78,7 +81,7 @@ export default class Consumer {
    * @method consumeEvent
    */
   consumeEvent(event) {
-    let target = {}
+    let target = {};
     if (event.target) {
       const tagName = event.target.tagName ? event.target.tagName.toLowerCase() : undefined;
       if (tagName) {
@@ -87,7 +90,7 @@ export default class Consumer {
         const id = event.target.id;
         // create selector of type `tagname#id.class1.class2`
         target['selector'] = `${tagName}${id ? `#${id}` : ''}${classString}`;
-        target['text'] = event.target.innerText
+        target['text'] = event.target.innerText;
       }
     }
 

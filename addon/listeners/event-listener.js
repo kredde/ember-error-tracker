@@ -4,7 +4,6 @@
  * @class EventListeners
  */
 export default class EventListener {
-
   /**
    * adds an eventlisteners for a given event
    *

@@ -2,7 +2,7 @@
 
 module.exports = {
   name: require('./package').name,
-  isDevelopingAddon: function () {
+  isDevelopingAddon: function() {
     return true;
   }
 };
