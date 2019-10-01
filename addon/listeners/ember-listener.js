@@ -62,6 +62,7 @@ export default class EmberListener extends EmberObject {
       Ember.ActionHandler.reopen({
         send: function(actionName) {
           try {
+            // eslint-disable-next-line
             this._super.apply(this, arguments);
           } catch (error) {
             const errorLog = {
