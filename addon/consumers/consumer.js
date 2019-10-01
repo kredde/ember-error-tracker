@@ -58,8 +58,8 @@ export default class Consumer {
     };
 
     if (this.options.console) {
-      // eslint-disable-next-line no-console
-      console.error(error.error.stack, payload.error);
+      // eslint-disable-next-line
+      console.error(error.error && error.error.stack);
     }
     if (this.options.api && this.options.api.endPoint) {
       const key = this.options.api.key ? `?key=${this.options.api.key}` : '';
