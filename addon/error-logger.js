@@ -43,7 +43,7 @@ export default class ErrorLogger extends EmberObject {
    */
   listen() {
     const consumer = new Consumer(this.options.maxLogStackSize, this.options.consumers);
-    const emberListener = new EmberListener();
+    const emberListener = EmberListener.create();
     emberListener.listen(consumer, this.options.listeners.ember, this.environment);
 
     if (window && this.options.listeners.window) {
