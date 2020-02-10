@@ -28,7 +28,7 @@ const DEFAULT_OPTIONS = {
  * @class ErrorLogger
  */
 export default class ErrorLogger extends EmberObject {
-  init(customOptions = {}, environment) {
+  init() {
     super.init(...arguments);
 
     const options = Object.assign(DEFAULT_OPTIONS, this.customOptions);
