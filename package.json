@@ -1,6 +1,6 @@
 {
   "name": "ember-error-tracker",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Error handling and logging addon for Ember.js.",
   "keywords": [
     "error",
